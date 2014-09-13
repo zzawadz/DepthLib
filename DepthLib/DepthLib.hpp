@@ -12,5 +12,6 @@
 
 // Depth functions
 #include "headers/mb_depth.hpp"
+#include "headers/euclid_depth.hpp"
 
 #endif /* DEPTHLIB_HPP_ */
