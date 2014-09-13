@@ -11,40 +11,40 @@
 namespace depth
 {
 
-arma::vec mb_depth(const arma::mat& X)
+arma::vec mb_depth(const arma::mat& x)
 {
-  //Rcpp::NumericMatrix cX(rX);
-  //arma::mat X(cX.begin(), cX.nrow(), cX.ncol(), false);
+  //Rcpp::NumericMatrix cx(rx);
+  //arma::mat x(cx.begin(), cx.nrow(), cx.ncol(), false);
 
-    arma::vec depth(X.n_rows); depth.zeros();
+    arma::vec depth(x.n_rows); depth.zeros();
 
-    size_t d = X.n_cols;
+    size_t d = x.n_cols;
     for(size_t i = 0; i < d; i++)
     {
-      depth += MBD::mbd_col(X.col(i));
+      depth += MBD::mbd_col(x.col(i));
     }
 
-    depth = depth / (d * MBD::choose(X.n_rows, 2));
+    depth = depth / (d * MBD::choose(x.n_rows, 2));
 
     return depth;
 }
 
-arma::vec mb_depth(const arma::mat& X, const arma::mat& Y)
+arma::vec mb_depth(const arma::mat& x, const arma::mat& y)
   {
-    //Rcpp::NumericMatrix cY(rY);
-    //arma::mat Y(cY.begin(), cY.nrow(), cY.ncol(), false);
-    //Rcpp::NumericMatrix cX(rX);
-    //arma::mat X(cX.begin(), cX.nrow(), cX.ncol(), false);
+    //Rcpp::NumericMatrix cy(ry);
+    //arma::mat y(cy.begin(), cy.nrow(), cy.ncol(), false);
+    //Rcpp::NumericMatrix cx(rx);
+    //arma::mat x(cx.begin(), cx.nrow(), cx.ncol(), false);
 
-    arma::vec depth(X.n_rows); depth.zeros();
+    arma::vec depth(x.n_rows); depth.zeros();
 
-    size_t d = X.n_cols;
+    size_t d = x.n_cols;
     for(size_t i = 0; i < d; i++)
     {
-      depth += MBD::mbd_col_ref(X.col(i), Y.col(i));
+      depth += MBD::mbd_col_ref(x.col(i), y.col(i));
     }
 
-    depth = depth / (d * MBD::choose(Y.n_rows, 2));
+    depth = depth / (d * MBD::choose(y.n_rows, 2));
 
     return depth;
   }
@@ -122,13 +122,13 @@ namespace MBD
 
   ///////////////////////////
 
-  arma::vec mbd_col_ref(arma::vec X,arma::vec Y)
+  arma::vec mbd_col_ref(arma::vec x,arma::vec y)
   {
-    size_t n = X.n_elem;
-    size_t n0 = Y.n_elem;
+    size_t n = x.n_elem;
+    size_t n0 = y.n_elem;
     arma::vec depth(n);
 
-    Y = arma::sort(Y);
+    y = arma::sort(y);
 
     double index1;
     double index2;
@@ -139,12 +139,12 @@ namespace MBD
     {
             index1 = 0;
             index2 = 0;
-            tval = X[i];
+            tval = x[i];
             j = 0;
-            while(j < n0 && tval >= Y[j])
+            while(j < n0 && tval >= y[j])
             {
               index2++;
-              if(tval > Y[j]) index1++;
+              if(tval > y[j]) index1++;
               j++;
             }
 

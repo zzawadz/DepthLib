@@ -14,8 +14,8 @@
 namespace depth
 {
 
-arma::vec mb_depth(const arma::mat& X);
-arma::vec mb_depth(const arma::mat& X, const arma::mat& Y);
+arma::vec mb_depth(const arma::mat& x);
+arma::vec mb_depth(const arma::mat& x, const arma::mat& y);
 
 }
 
@@ -25,7 +25,7 @@ namespace MBD
 {
 	double choose(double n, double k);
 	arma::vec mbd_col(arma::vec x);
-	arma::vec mbd_col_ref(arma::vec X,arma::vec Y);
+	arma::vec mbd_col_ref(arma::vec x,arma::vec y);
 }
 
 
