@@ -10,15 +10,26 @@
 namespace depth
 {
 
-arma::vec euclid_depth(arma::mat x, arma::rowvec center)
+arma::vec euclid_depth(const arma::mat& x, const arma::rowvec& center)
 {
 	arma::vec depth(x.n_rows);
-
-	x = x-arma::repmat(center, x.n_rows, 1);
-	x = x % x;
-	x = sum(x,1);
-	x = sqrt(x);
-	depth = 1/(x+1);
+	
+	/*arma::mat tx = x;
+	tx = tx-arma::repmat(center, x.n_rows, 1);
+	tx = tx % tx;
+	tx = sum(tx,1);
+	tx = sqrt(tx);*/
+	
+	size_t n = x.n_rows;
+	arma::rowvec tmp;
+	
+	for(size_t i = 0; i < n; i++)
+	{
+	  tmp = x.row(i) - center;
+	  depth(i) = sqrt(sum(tmp % tmp));
+	}
+	
+	depth = 1/(depth + 1);
 
 	return depth;
 }

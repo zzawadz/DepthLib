@@ -13,7 +13,7 @@
 namespace depth
 {
 
-arma::vec euclid_depth(const arma::mat x, arma::rowvec center);
+arma::vec euclid_depth(const arma::mat& x, const arma::rowvec& center);
 arma::vec euclid_depth(const arma::mat& x, const arma::mat& y);
 arma::vec euclid_depth(const arma::mat& x);
 
