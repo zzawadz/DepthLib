@@ -1,0 +1,2 @@
+#define DepthLib_VERSION_MAJOR @DepthLib_VERSION_MAJOR@
+#define DepthLib_VERSION_MAJOR @DepthLib_VERSION_MINOR@

@@ -1,3 +1,11 @@
+build
+buildExamples
+.cproject
+.project
+.settings
+DepthLib.kdev4
+.metadata
+
 # Compiled Object files
 *.slo
 *.lo

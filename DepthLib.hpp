@@ -8,10 +8,10 @@
 #ifndef DEPTHLIB_HPP_
 #define DEPTHLIB_HPP_
 
-#include "headers/DepthLib_include.hpp"
+#include "library/DepthLib_include.hpp"
 
 // Depth functions
-#include "headers/mb_depth.hpp"
-#include "headers/euclid_depth.hpp"
+#include "library/mb_depth.hpp"
+#include "library/euclid_depth.hpp"
 
 #endif /* DEPTHLIB_HPP_ */
