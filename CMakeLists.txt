@@ -3,7 +3,7 @@ project (DepthLib CXX)
 
 # Armadillo library
 find_library(Armadillo REQUIRED)
-
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -g -O0")
 
 # The version number.
 set (DepthLib_VERSION_MAJOR 0)
@@ -16,7 +16,11 @@ configure_file(
   "${PROJECT_BINARY_DIR}/DepthLibConfig.h"
  )
 
-add_library(DepthLib library/algorithm/euclid_depth.cpp library/algorithm/mb_depth.cpp)
+add_library(DepthLib 
+  library/algorithm/euclid_depth.cpp 
+  library/algorithm/mb_depth.cpp
+  library/algorithm/mah_depth.cpp
+ )
  
 option(BUILD_SHARED_LIBS "Build shared library" ON)
  
