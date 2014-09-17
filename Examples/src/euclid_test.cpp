@@ -25,10 +25,10 @@ int main()
 	std::cout << "euclid_depth with reference set: " << std::endl
 	<< depth::euclid_depth(x, x);
 	
-	arma::mat big(1000000, 1000);
+	arma::mat big(100000, 1000);
 	big.randn();
 	
-	std::cout << "Depth calculation for matrix of size 1000000x1000 took " 
+	std::cout << "Depth calculation for matrix of size 100000x1000 took " 
 	<< measure<>::execution( [&]() { depth::euclid_depth(big); }) << " microseconds. "  << std::endl;
 	
 	return 0;

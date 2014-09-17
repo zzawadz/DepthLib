@@ -13,11 +13,12 @@
 namespace depth
 {
 
-  arma::vec mah_depth(const arma::mat& X);
-  arma::vec mah_depth(const arma::mat& X, const arma::mat& Y);
-  arma::vec mah_depth(const arma::mat& X, const arma::mat& Y, const arma::mat& cov);
-  arma::vec mah_depth(const arma::mat& X, const arma::mat& Y, const arma::rowvec& mean);
-  arma::vec mah_depth(const arma::mat& X, const arma::mat& Y, const arma::mat& cov, const arma::rowvec& mean);
+  arma::vec mah_depth(const arma::mat& x);
+  arma::vec mah_depth(const arma::mat& x, const arma::rowvec& mean);
+  arma::vec mah_depth(const arma::mat& x, const arma::mat& y);
+  arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::mat& cov);
+  arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::rowvec& mean);
+  arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::mat& cov, const arma::rowvec& mean);
 
 
 }

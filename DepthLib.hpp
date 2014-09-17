@@ -13,5 +13,6 @@
 // Depth functions
 #include "library/mb_depth.hpp"
 #include "library/euclid_depth.hpp"
+#include "library/mah_depth.hpp"
 
 #endif /* DEPTHLIB_HPP_ */

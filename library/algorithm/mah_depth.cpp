@@ -8,6 +8,11 @@ arma::vec mah_depth(const arma::mat& x)
   return(mah_depth(x,x));
 }
 
+arma::vec mah_depth(const arma::mat& x, const arma::rowvec& mean)
+{
+    return(mah_depth(x,x,mean));
+}
+
 arma::vec mah_depth(const arma::mat& x, const arma::mat& y)
 {
   arma::mat cov = arma::cov(y);
