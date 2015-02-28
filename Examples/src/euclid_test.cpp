@@ -14,22 +14,26 @@ int main()
 {
 	arma::mat x(10,2);
 	x.randn();
+	Depth::Euclid::EuclidDepth euclidDepth;
+	
+	std::cout << euclidDepth.calculate_depth(x,x) << std::endl << std::endl;
+	std::cout << Depth::depth(x,x,euclidDepth);
+	/*
 	arma::rowvec cntr; cntr.zeros(2);
 	
+	Depth::euclid_depth(x, cntr);
+	std::cout << "euclid_depth with center: ok!\n";
+	*/
+	/*
+	Depth::euclid_depth(x);
+	std::cout << "euclid_depth: - ok!\n";
+	Depth::euclid_depth2(x, x);
+	std::cout << "euclid_depth with reference set: - ok!\n";*/
 	
-	std::cout << "euclid_depth with center: " << std::endl 
-	<< depth::euclid_depth(x, cntr);
-	
-	std::cout << "euclid_depth: " << std::endl
-	<< depth::euclid_depth(x);
-	std::cout << "euclid_depth with reference set: " << std::endl
-	<< depth::euclid_depth(x, x);
-	
-	arma::mat big(100000, 1000);
-	big.randn();
-	
-	std::cout << "Depth calculation for matrix of size 100000x1000 took " 
-	<< measure<>::execution( [&]() { depth::euclid_depth(big); }) << " microseconds. "  << std::endl;
+	//arma::mat big(100, 10);
+	//big.randn();
+	//std::cout << "Depth calculation for matrix of size 100000x1000 took " 
+	//<< measure<>::execution( [&]() { depth::euclid_depth(big); }) << " microseconds. "  << std::endl;
 	
 	return 0;
 }

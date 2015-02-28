@@ -1,6 +1,6 @@
 #include "../mah_depth.hpp"
 
-namespace depth
+namespace Depth
 {
 
 arma::vec mah_depth(const arma::mat& x)

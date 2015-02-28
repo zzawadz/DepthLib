@@ -10,7 +10,7 @@
 
 #include "DepthLib_include.hpp"
 
-namespace depth
+namespace Depth
 {
 
   arma::vec mah_depth(const arma::mat& x);

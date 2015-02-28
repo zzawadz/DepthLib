@@ -11,7 +11,7 @@
 #include "DepthLib_include.hpp"
 
 
-namespace depth
+namespace FncDepth
 {
 
 arma::vec mb_depth(const arma::mat& x);

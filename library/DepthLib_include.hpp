@@ -8,6 +8,7 @@
 #ifndef DEPTHLIB_INCLUDE_HPP_
 #define DEPTHLIB_INCLUDE_HPP_
 
+#include <functional>
 #include <armadillo>
 #include <cmath>
 

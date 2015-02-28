@@ -9,13 +9,25 @@
 #define EUCLID_DEPTH_HPP_
 
 #include "DepthLib_include.hpp"
+#include "depth.hpp"
 
-namespace depth
+namespace Depth
 {
-
-arma::vec euclid_depth(const arma::mat& x, const arma::rowvec& center);
-arma::vec euclid_depth(const arma::mat& x, const arma::mat& y);
-arma::vec euclid_depth(const arma::mat& x);
+  
+  namespace Euclid
+  {
+    
+    class EuclidDepth : public Depth::DepthFunction
+    {
+      public:
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y);
+    };
+    
+    
+    arma::vec euclid_depth(const arma::mat& x, const arma::rowvec& center);
+    arma::vec euclid_depth(const arma::mat& x, const arma::mat& y);
+    arma::vec euclid_depth(const arma::mat& x);
+  }
 
 }
 

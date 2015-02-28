@@ -8,7 +8,7 @@
 #include "../mb_depth.hpp"
 
 
-namespace depth
+namespace Depth
 {
 
 arma::vec mb_depth(const arma::mat& x)
