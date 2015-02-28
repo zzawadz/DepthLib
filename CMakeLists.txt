@@ -20,9 +20,16 @@ add_library(DepthLib
   library/algorithm/euclid_depth.cpp 
   library/algorithm/mb_depth.cpp
   library/algorithm/mah_depth.cpp
+  library/algorithm/depth.cpp
  )
  
 option(BUILD_SHARED_LIBS "Build shared library" ON)
  
 #SET_TARGET_PROPERTIES(DepthLib PROPERTIES LINKER_LANGUAGE CXX)
 target_link_libraries(DepthLib armadillo)
+
+add_subdirectory(Examples)
+
+add_test(MahalanobisDepth Examples/mah_test)
+add_test(MahalanobisDepth Examples/euclid_test)
+add_test(MahalanobisDepth Examples/depth_test)
