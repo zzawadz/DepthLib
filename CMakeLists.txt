@@ -29,6 +29,4 @@ target_link_libraries(DepthLib armadillo)
 
 add_subdirectory(Examples)
 
-add_test(MahalanobisDepth Examples/mah_test)
-add_test(MahalanobisDepth Examples/euclid_test)
-add_test(MahalanobisDepth Examples/depth_test)
+add_test(MahalanobisDepth Examples/distance_depths_test)

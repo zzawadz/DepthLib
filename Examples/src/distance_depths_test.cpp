@@ -16,27 +16,26 @@ int main()
 	x.randn();
 	arma::rowvec cntr; cntr.zeros(2);
 	Depth::EuclidDepth euclidDepth;
-	Depth::EuclidDepth euclidDepth2(cntr);
+	Depth::EuclidDepth euclidDepthCntr(cntr);
 	
-	std::cout << euclidDepth.calculate_depth(x,x) << std::endl << std::endl;
-	std::cout << Depth::depth(x,x,euclidDepth) << std::endl;
-	std::cout << Depth::depth(x,x,euclidDepth2);
-	/*
+	std::cout << "Euclid: "    << std::endl;
+	std::cout << "Standard:"   << euclidDepth.calculate_depth(x,x) << std::endl << std::endl;
+	std::cout << "Standard2: " << Depth::depth(x,x,euclidDepth) << std::endl;
+	std::cout << "Center: "    << Depth::depth(x,x,euclidDepthCntr) << std::endl;
 	
 	
-	Depth::euclid_depth(x, cntr);
-	std::cout << "euclid_depth with center: ok!\n";
-	*/
-	/*
-	Depth::euclid_depth(x);
-	std::cout << "euclid_depth: - ok!\n";
-	Depth::euclid_depth2(x, x);
-	std::cout << "euclid_depth with reference set: - ok!\n";*/
+	//// Mahalanobis
+	arma::mat cov = arma::cov(x);
+	Depth::MahalanobisDepth mahDeph;
+	Depth::MahalanobisDepth mahDephCov(cov);
+	Depth::MahalanobisDepth mahDephCenter(cntr);
+	Depth::MahalanobisDepth mahDephCenterCov(cntr, cov);
 	
-	//arma::mat big(100, 10);
-	//big.randn();
-	//std::cout << "Depth calculation for matrix of size 100000x1000 took " 
-	//<< measure<>::execution( [&]() { depth::euclid_depth(big); }) << " microseconds. "  << std::endl;
+	std::cout << "Mahalanobis: " << std::endl;
+	std::cout << "Standard: "  << Depth::depth(x,x,mahDeph) << std::endl;
+	std::cout << "Cov: "       << Depth::depth(x,x,mahDephCov) << std::endl;
+	std::cout << "Center: "    << Depth::depth(x,x,mahDephCenter) << std::endl;
+	std::cout << "CenterCov: " << Depth::depth(x,x,mahDephCenterCov) << std::endl;
 	
 	return 0;
 }

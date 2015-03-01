@@ -35,16 +35,32 @@ namespace Depth
   
   
   /////////////////////////// Mahalanobis
-  
+  class MahalanobisDepth : public Depth::DepthFunction
+    {
+      public:
+	MahalanobisDepth();
+	MahalanobisDepth(arma::mat cov);
+	MahalanobisDepth(arma::rowvec center);
+	MahalanobisDepth(arma::rowvec center, arma::mat cov);
+	
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y);
+	
+	
+      private:
+	 arma::rowvec center;
+	 arma::mat    cov;
+	
+    };
   
   namespace Mahalanobis
   {
     arma::vec mah_depth(const arma::mat& x);
-    arma::vec mah_depth(const arma::mat& x, const arma::rowvec& mean);
+    arma::vec mah_depth(const arma::mat& x, const arma::rowvec& center);
     arma::vec mah_depth(const arma::mat& x, const arma::mat& y);
     arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::mat& cov);
-    arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::rowvec& mean);
-    arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::mat& cov, const arma::rowvec& mean);
+    arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::rowvec& center);
+    arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::rowvec& center, const arma::mat& cov);
+     
   }
 
 }
