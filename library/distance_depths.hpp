@@ -13,11 +13,7 @@
 
 namespace Depth
 {
-  
-  namespace Euclid
-  {
-    
-    class EuclidDepth : public Depth::DepthFunction
+  class EuclidDepth : public Depth::DepthFunction
     {
       public:
 	EuclidDepth();
@@ -29,25 +25,26 @@ namespace Depth
 	 arma::rowvec center;
 	
     };
-    
-    
+  
+  namespace Euclid
+  {
     arma::vec euclid_depth(const arma::mat& x, const arma::rowvec& center);
     arma::vec euclid_depth(const arma::mat& x, const arma::mat& y);
     arma::vec euclid_depth(const arma::mat& x);
   }
   
   
+  /////////////////////////// Mahalanobis
+  
+  
   namespace Mahalanobis
   {
-
     arma::vec mah_depth(const arma::mat& x);
     arma::vec mah_depth(const arma::mat& x, const arma::rowvec& mean);
     arma::vec mah_depth(const arma::mat& x, const arma::mat& y);
     arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::mat& cov);
     arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::rowvec& mean);
     arma::vec mah_depth(const arma::mat& x, const arma::mat& y, const arma::mat& cov, const arma::rowvec& mean);
-
-
   }
 
 }

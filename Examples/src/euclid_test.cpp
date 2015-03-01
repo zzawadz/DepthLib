@@ -15,8 +15,8 @@ int main()
 	arma::mat x(10,2);
 	x.randn();
 	arma::rowvec cntr; cntr.zeros(2);
-	Depth::Euclid::EuclidDepth euclidDepth;
-	Depth::Euclid::EuclidDepth euclidDepth2(cntr);
+	Depth::EuclidDepth euclidDepth;
+	Depth::EuclidDepth euclidDepth2(cntr);
 	
 	std::cout << euclidDepth.calculate_depth(x,x) << std::endl << std::endl;
 	std::cout << Depth::depth(x,x,euclidDepth) << std::endl;
