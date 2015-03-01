@@ -8,12 +8,12 @@ int main()
 	x.randn();
 	arma::rowvec cntr; cntr.zeros(2);
 	
-	Depth::mah_depth(x, cntr);
+	Depth::Mahalanobis::mah_depth(x, cntr);
 	std::cout << "mah_depth with center: ok!" << std::endl;
 	
-	Depth::mah_depth(x);
+	Depth::Mahalanobis::mah_depth(x);
 	std::cout << "mah_depth: ok!" << std::endl;
-	Depth::mah_depth(x, x);
+	Depth::Mahalanobis::mah_depth(x, x);
 	std::cout << "mah_depth with reference set - ok!" << std::endl;
 	
 	/*arma::mat big(100000, 1000);

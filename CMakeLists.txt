@@ -17,9 +17,8 @@ configure_file(
  )
 
 add_library(DepthLib 
-  library/algorithm/euclid_depth.cpp 
+  library/algorithm/distance_depths.cpp 
   library/algorithm/mb_depth.cpp
-  library/algorithm/mah_depth.cpp
   library/algorithm/depth.cpp
  )
  
