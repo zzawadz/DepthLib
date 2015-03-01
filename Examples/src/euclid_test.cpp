@@ -14,12 +14,15 @@ int main()
 {
 	arma::mat x(10,2);
 	x.randn();
+	arma::rowvec cntr; cntr.zeros(2);
 	Depth::Euclid::EuclidDepth euclidDepth;
+	Depth::Euclid::EuclidDepth euclidDepth2(cntr);
 	
 	std::cout << euclidDepth.calculate_depth(x,x) << std::endl << std::endl;
-	std::cout << Depth::depth(x,x,euclidDepth);
+	std::cout << Depth::depth(x,x,euclidDepth) << std::endl;
+	std::cout << Depth::depth(x,x,euclidDepth2);
 	/*
-	arma::rowvec cntr; cntr.zeros(2);
+	
 	
 	Depth::euclid_depth(x, cntr);
 	std::cout << "euclid_depth with center: ok!\n";

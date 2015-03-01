@@ -11,11 +11,21 @@ namespace Depth
 {
   namespace Euclid {
     
+    // constructors
+    EuclidDepth::EuclidDepth() {}
+    EuclidDepth::EuclidDepth(arma::rowvec center) : center(center) {}
     
     arma::vec EuclidDepth::calculate_depth(const arma::mat& x, const arma::mat& y)
     {
-      return euclid_depth(x,y);
+      if(this->center.is_empty()) 
+      {
+	return euclid_depth(x, y);
+      } else
+      {
+	return euclid_depth(x, this->center);
+      }
     }
+    
     
     arma::vec euclid_depth(const arma::mat& x, const arma::rowvec& center)
     {
@@ -34,6 +44,7 @@ namespace Depth
 
 	    return depth;
     }
+    
 
     arma::vec euclid_depth(const arma::mat& x)
     {

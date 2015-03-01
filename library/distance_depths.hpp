@@ -20,7 +20,14 @@ namespace Depth
     class EuclidDepth : public Depth::DepthFunction
     {
       public:
+	EuclidDepth();
+	EuclidDepth(arma::rowvec center);
 	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y);
+	
+	
+      private:
+	 arma::rowvec center;
+	
     };
     
     
