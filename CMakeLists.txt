@@ -18,7 +18,7 @@ configure_file(
 
 add_library(DepthLib 
   library/algorithm/distance_depths.cpp 
-  library/algorithm/mb_depth.cpp
+  library/algorithm/functional_depths.cpp
   library/algorithm/depth.cpp
  )
  

@@ -12,7 +12,7 @@
 #include <functional>
 
 // Depth functions
-#include "library/mb_depth.hpp"
+#include "library/functional_depths.hpp"
 #include "library/distance_depths.hpp"
 #include "library/depth.hpp"
 
