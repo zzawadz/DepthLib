@@ -13,7 +13,7 @@ namespace Depth
    EuclidDepth::EuclidDepth() {}
    EuclidDepth::EuclidDepth(arma::rowvec center) : center(center) {}
     
-   arma::vec EuclidDepth::calculate_depth(const arma::mat& x, const arma::mat& y)
+   arma::vec EuclidDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
    {
      if(this->center.is_empty()) 
      {
@@ -65,7 +65,7 @@ namespace Depth
   MahalanobisDepth::MahalanobisDepth(arma::rowvec center) : center(center) {}
   MahalanobisDepth::MahalanobisDepth(arma::rowvec center, arma::mat cov) : center(center), cov(cov) {}
   
-  arma::vec MahalanobisDepth::calculate_depth(const arma::mat& x, const arma::mat& y)
+  arma::vec  MahalanobisDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
   {
    if(this->center.is_empty() && this->cov.is_empty())
    {

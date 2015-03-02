@@ -18,7 +18,7 @@ namespace Depth
   class DepthFunction
   {
       public:
-	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) =0;
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const =0;
   };
   
   arma::vec depth(const arma::mat& x, const arma::mat& y, DepthFunction& depthFnc); //, const std::function<arma::vec(const arma::mat&, const arma::mat&)> depFnc);

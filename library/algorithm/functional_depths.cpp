@@ -11,15 +11,41 @@
 namespace Depth
 {
 
+  FraimanMunizDepth::FraimanMunizDepth(DepthFunction* depthFnc)
+  {
+    this->depthFnc = depthFnc;  
+  }
+  arma::vec FraimanMunizDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
+  {
+      FunctionalDepths::fraiman_muniz_depth(x, y, *this->depthFnc);
+  }
+  
+  
+  namespace FunctionalDepths
+  {
+    arma::vec fraiman_muniz_depth(const arma::mat& x, const arma::mat& y, const Depth::DepthFunction& depthFnc)
+    {
+      arma::vec result(x.n_rows); result.zeros();
+      
+      for(size_t i = 0; i < x.n_cols; i ++)
+      {
+	result += depthFnc.calculate_depth(x.col(i), y.col(i));
+      }
+      
+      result = result / static_cast<double>(x.n_cols);
+      return result;
+    }
+  }
+  
 ////////////////// ModifiedBandDepth /////////////////
   ModifiedBandDepth::ModifiedBandDepth() {};
-  arma::vec ModifiedBandDepth::calculate_depth(const arma::mat& x, const arma::mat& y)
+  arma::vec ModifiedBandDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
   {
-      return MBD::mb_depth(x, y);
+      return FunctionalDepths::mb_depth(x, y);
   }
 
   /// Utils functions for MBDepth
-  namespace MBD
+  namespace FunctionalDepths
   {
     arma::vec mb_depth(const arma::mat& x)
     {
@@ -50,12 +76,7 @@ namespace Depth
 
       return depth;
     }
-    
-    
-    
-    
-
-
+ 
 
     arma::vec mbd_col(arma::vec x)
     {

@@ -18,7 +18,7 @@ namespace Depth
       public:
 	EuclidDepth();
 	EuclidDepth(arma::rowvec center);
-	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y);
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
 	
 	
       private:
@@ -43,7 +43,7 @@ namespace Depth
 	MahalanobisDepth(arma::rowvec center);
 	MahalanobisDepth(arma::rowvec center, arma::mat cov);
 	
-	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y);
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
 	
 	
       private:

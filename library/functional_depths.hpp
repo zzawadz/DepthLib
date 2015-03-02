@@ -10,21 +10,38 @@
 
 #include "depth.hpp"
 #include "DepthLib_include.hpp"
-
+#include "memory"
 
 namespace Depth
 {
 
+  ///////////////////////// Fraiman-Muniz depth ////////////////////
+  class FraimanMunizDepth : public Depth::DepthFunction
+  {
+      public:
+	FraimanMunizDepth(DepthFunction* depthFnc);
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
+	
+      private:
+	DepthFunction* depthFnc;
+  };
+  
+  namespace FunctionalDepths
+  {
+    arma::vec fraiman_muniz_depth(const arma::mat& x, const arma::mat& y, const Depth::DepthFunction& depthFnc);
+  }
+  
+  /////////////////// ModifiedBandDepth /////////////////
     class ModifiedBandDepth : public Depth::DepthFunction
     {
       public:
 	ModifiedBandDepth();
-	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y);
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
 	
     };
 
  /// Utils functions for MBDepth
-  namespace MBD
+  namespace FunctionalDepths
   {
 	  arma::vec mb_depth(const arma::mat& x);
 	  arma::vec mb_depth(const arma::mat& x, const arma::mat& y);
