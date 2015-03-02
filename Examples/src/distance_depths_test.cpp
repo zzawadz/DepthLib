@@ -1,5 +1,5 @@
 /*
- * euclid_test.cpp
+ * distance_depths_test.cpp
  *
  *  Created on: Sep 14, 2014
  *      Author: zzawadz

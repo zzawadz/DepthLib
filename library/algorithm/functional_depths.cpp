@@ -11,13 +11,13 @@
 namespace Depth
 {
 
-  FraimanMunizDepth::FraimanMunizDepth(DepthFunction* depthFnc)
+  FraimanMunizDepth::FraimanMunizDepth(DepthFunction& depthFnc)
   {
-    this->depthFnc = depthFnc;  
+    this->depthFnc = &depthFnc;  
   }
   arma::vec FraimanMunizDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
   {
-      FunctionalDepths::fraiman_muniz_depth(x, y, *this->depthFnc);
+      return FunctionalDepths::fraiman_muniz_depth(x, y, *this->depthFnc);
   }
   
   
@@ -31,7 +31,6 @@ namespace Depth
       {
 	result += depthFnc.calculate_depth(x.col(i), y.col(i));
       }
-      
       result = result / static_cast<double>(x.n_cols);
       return result;
     }

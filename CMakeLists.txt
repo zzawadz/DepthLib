@@ -30,3 +30,4 @@ target_link_libraries(DepthLib armadillo)
 add_subdirectory(Examples)
 
 add_test(MahalanobisDepth Examples/distance_depths_test)
+add_test(MahalanobisDepth Examples/functional_depths_test)

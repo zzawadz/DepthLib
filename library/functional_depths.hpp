@@ -19,11 +19,11 @@ namespace Depth
   class FraimanMunizDepth : public Depth::DepthFunction
   {
       public:
-	FraimanMunizDepth(DepthFunction* depthFnc);
+	FraimanMunizDepth(DepthFunction& depthFnc);
 	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
 	
       private:
-	DepthFunction* depthFnc;
+	const DepthFunction* depthFnc;
   };
   
   namespace FunctionalDepths
