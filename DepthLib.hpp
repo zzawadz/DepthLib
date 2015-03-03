@@ -13,6 +13,7 @@
 
 // Depth functions
 #include "library/functional_depths.hpp"
+#include "library/standard_depths.hpp"
 #include "library/distance_depths.hpp"
 #include "library/depth.hpp"
 

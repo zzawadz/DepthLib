@@ -10,7 +10,7 @@
 
 #include "depth.hpp"
 #include "DepthLib_include.hpp"
-#include "memory"
+
 
 namespace Depth
 {

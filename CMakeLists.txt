@@ -19,8 +19,12 @@ configure_file(
 add_library(DepthLib 
   library/algorithm/distance_depths.cpp 
   library/algorithm/functional_depths.cpp
+  library/algorithm/standard_depths.cpp
   library/algorithm/depth.cpp
  )
+ 
+
+  
  
 option(BUILD_SHARED_LIBS "Build shared library" ON)
  
