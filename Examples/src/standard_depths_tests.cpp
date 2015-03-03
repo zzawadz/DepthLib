@@ -17,8 +17,8 @@ int main()
 	
 	std::cout << Depth::TukeyUtils::tukey_depth1d(x,y) << std::endl;
 	
-	arma::colvec big(10000000);
-	big.randn();
+	//arma::colvec big(10000000);
+	//big.randn();
 	
 	//std::cout << "Depth calculation for vector of size 1000000 took " 
 	//<< measure<>::execution( [&]() { Depth::TukeyUtils::tukey_depth1d(big, big); }) << " microseconds. "  << std::endl;
