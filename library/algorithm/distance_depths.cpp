@@ -9,6 +9,42 @@
 
 namespace Depth
 { 
+ //////////////////////////// LP depth ///////////////////////////////
+ namespace LP
+ {
+    arma::vec lp_depth(const arma::mat& x, const arma::mat& y, const double &p, const double& a, const double& b)
+    {
+	size_t d = y.n_cols;
+	size_t n_y = y.n_rows;
+	size_t n_x = x.n_rows;
+
+	arma::vec depth(n_x);
+	size_t k,i;
+    
+    	for(k = 0; k< n_x; k++)
+	{
+	  arma::rowvec tmp = arma::zeros<arma::rowvec>(d);
+  	  double sum_res = 0;
+	  double tmp_sum;
+	  
+	  for(size_t i = 0; i < n_y; i++)
+	  {
+	    tmp = x.row(k) - y.row(i);
+	    tmp = arma::abs(tmp);
+	    tmp = arma::pow(tmp, p);
+	    tmp_sum = arma::sum(tmp);
+	    tmp_sum = a*tmp_sum + b;
+	    sum_res = sum_res + tmp_sum;
+	  }
+	  depth(k) = 1/(1 + sum_res/static_cast<double>(n_y));
+	 }
+		return depth;
+    }
+ }
+  
+  
+  
+ //////////////////// Euclidean depth /////////////
   // constructors
    EuclidDepth::EuclidDepth() {}
    EuclidDepth::EuclidDepth(arma::rowvec center) : center(center) {}

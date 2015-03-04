@@ -13,6 +13,13 @@
 
 namespace Depth
 {
+  
+  namespace LP
+  {
+    arma::vec lp_depth(const arma::mat& x, const arma::mat& y, const double &p, const double& a, const double& b);
+  }
+  
+////////////// Euclid depth
   class EuclidDepth : public Depth::DepthFunction
     {
       public:
