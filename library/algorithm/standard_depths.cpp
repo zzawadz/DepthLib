@@ -9,7 +9,45 @@
 
 namespace Depth
 {
+  ///////////////////// Projection depth
   
+ namespace Projection
+ {
+  arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj)
+  {  
+    size_t nx = x.n_rows;
+    size_t ny = y.n_rows;
+    size_t d  = y.n_cols;
+
+    arma::mat directions = StandardDepthUtils::runifsphere(nproj, d);
+    directions = directions.t();
+    
+    arma::vec depth(nx);
+    arma::vec tmpProj(ny);
+    arma::rowvec medians(nproj);
+    arma::rowvec mads(nproj);
+    size_t i;
+    for(i = 0; i < nproj; i++)
+    {
+      tmpProj = y * directions.col(i);
+      medians(i) = arma::median(tmpProj);
+      mads(i) = arma::median(arma::abs(tmpProj - medians(i)));
+    }
+
+    arma::rowvec tmpX(nproj);
+    for(i = 0; i < nx; i++)
+    {
+      tmpX = x.row(i) * directions;
+      tmpX -= medians;
+      tmpX /= mads;
+      tmpX = arma::abs(tmpX);
+      depth(i) = arma::max(tmpX);
+    }
+
+    depth = 1/(1+depth);
+    return depth;
+  }
+ }
   
   namespace TukeyUtils 
   {

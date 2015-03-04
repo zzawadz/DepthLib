@@ -13,6 +13,13 @@
 
 namespace Depth
 {
+  
+  
+ namespace Projection
+ {
+   arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj);
+ }
+
 // Tukey's depth
 namespace TukeyUtils
 {
@@ -24,7 +31,7 @@ namespace TukeyUtils
   double tukey_depth2d_exact(double U, double V,const arma::mat& m);  
 }
 
-namespace StandrdDepthUtils
+namespace StandardDepthUtils
 {
   arma::mat runifsphere(size_t n, size_t p);
   arma::vec seq(const double& x, const double& y, const size_t& length);
