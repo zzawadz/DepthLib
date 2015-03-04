@@ -24,6 +24,13 @@ int main()
 	std::cout << "Center: "    << Depth::depth(x,x,euclidDepthCntr) << std::endl;
 	
 	
+	/// Values:
+	arma::colvec xx = arma::linspace(1.0, 10.0,10);
+	arma::mat xmat(10,2);
+	xmat.col(0) = xx; xmat.col(1) = xx;
+	std::cout << "Depth Euclid values:" << std::endl;
+	std::cout << euclidDepth.calculate_depth(xmat, xmat) << std::endl;
+	
 	//// Mahalanobis
 	arma::mat cov = arma::cov(x);
 	Depth::MahalanobisDepth mahDeph;
