@@ -1,5 +1,5 @@
 /*
- * standard_depths.hpp
+ * local_depths.hpp
  *
  *  Created on: March 04, 2015
  *      Author: zzawadz
@@ -26,6 +26,12 @@ namespace Depth
 	const DepthFunction* depthFncSecond;
   };
   
+  namespace LocalDepthUtils
+  {
+    arma::mat symmetrization(arma::rowvec x, const arma::mat& y);
+    
+    
+  }
 
   
 }

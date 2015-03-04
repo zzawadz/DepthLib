@@ -20,6 +20,7 @@ add_library(DepthLib
   library/algorithm/distance_depths.cpp 
   library/algorithm/functional_depths.cpp
   library/algorithm/standard_depths.cpp
+  library/algorithm/local_depth.cpp 
   library/algorithm/depth.cpp
  )
  

@@ -15,6 +15,7 @@
 #include "library/functional_depths.hpp"
 #include "library/standard_depths.hpp"
 #include "library/distance_depths.hpp"
+#include "library/local_depth.hpp"
 #include "library/depth.hpp"
 
 //typedef std::function<arma::vec(const arma::mat&, const arma::mat&)> DepthFunction;
