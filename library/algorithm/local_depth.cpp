@@ -35,6 +35,22 @@ namespace Depth
 	return y.rows(0, endRow);
       }
       
+      double local_depth_single(const arma::rowvec& x, const arma::mat& y, const Depth::DepthFunction& depthFnc, const Depth::DepthFunction& depthFncSecond, double beta)
+      {
+	arma::mat yNeigh = neighborhood(x, y, depthFnc, beta);
+	return depthFncSecond.calculate_depth(x, yNeigh).at(0);
+      }
+      
+      arma::vec local_depth(const arma::mat& x, const arma::mat& y, const Depth::DepthFunction& depthFnc, const Depth::DepthFunction& depthFncSecond, double beta)
+      {
+	size_t nElem = x.n_rows;
+	arma::vec result(nElem);
+	for(size_t i = 0; i < nElem; i++)
+	{
+	  result(i) = local_depth_single(x.row(i), y, depthFnc, depthFncSecond, beta);
+	}
+	return result;
+      }
       
     }
 }

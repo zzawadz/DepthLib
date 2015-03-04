@@ -31,6 +31,8 @@ namespace Depth
     arma::mat symmetrization(arma::rowvec x, const arma::mat& y);
     arma::mat neighborhood(arma::rowvec x, arma::mat y, const Depth::DepthFunction& depthFnc, double beta);
     
+    double local_depth_single(const arma::rowvec& x, const arma::mat& y, const Depth::DepthFunction& depthFnc, const Depth::DepthFunction& depthFncSecond, double beta);
+    arma::vec local_depth(const arma::mat& x, const arma::mat& y, const Depth::DepthFunction& depthFnc, const Depth::DepthFunction& depthFncSecond, double beta);
     
   }
 

@@ -21,13 +21,14 @@ int main()
 	
 	Depth::EuclidDepth euclidDepth;
 	std::cout << "Neighbourhood: " << Depth::LocalDepthUtils::neighborhood(u, xmat, euclidDepth, 0.5) << std::endl;
+	std::cout << "Local depth: " << Depth::LocalDepthUtils::local_depth(xmat, xmat, euclidDepth, euclidDepth, 0.5) << std::endl;
 	
 	
-	//arma::mat big(1e6,2);
+	//arma::mat big(1e4,2);
 	//big.randn();
-	//std::cout << "Symmetrization took " 
-	//<< measure<>::execution( [&]() { Depth::LocalDepthUtils::symmetrization(u, big); }) << " microseconds. "  << std::endl;
-
+	//std::cout << "Local depth took " 
+	//<< measure<>::execution( [&]() { Depth::LocalDepthUtils::local_depth(big, big, euclidDepth, euclidDepth, 0.5); }) << " microseconds. "  << std::endl;
+	// aprox 63s...
 	
 	return 0;
 }
