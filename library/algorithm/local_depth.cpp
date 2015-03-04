@@ -23,5 +23,18 @@ namespace Depth
 	 }
 	return arma::join_cols(y, ySym);
       }
+      
+      arma::mat neighborhood(arma::rowvec x, arma::mat y, const Depth::DepthFunction& depthFnc, double beta)
+      {
+	arma::mat ySym = symmetrization(x, y);
+	arma::vec depths = depthFnc.calculate_depth(y, ySym);
+	//std::cout << "Depths inside neigh:" << depths << std::endl;
+	y = y.rows(sort_index(depths, "descend"));
+	
+	size_t endRow = static_cast<size_t>(y.n_rows * (1.0 -beta)) - 1;
+	return y.rows(0, endRow);
+      }
+      
+      
     }
 }

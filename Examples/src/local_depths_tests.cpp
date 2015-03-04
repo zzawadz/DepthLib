@@ -18,6 +18,11 @@ int main()
 	xmat.col(0) = x; xmat.col(1) = x;
 	std::cout << Depth::LocalDepthUtils::symmetrization(u, xmat) << std::endl;
 	
+	
+	Depth::EuclidDepth euclidDepth;
+	std::cout << "Neighbourhood: " << Depth::LocalDepthUtils::neighborhood(u, xmat, euclidDepth, 0.5) << std::endl;
+	
+	
 	//arma::mat big(1e6,2);
 	//big.randn();
 	//std::cout << "Symmetrization took " 
