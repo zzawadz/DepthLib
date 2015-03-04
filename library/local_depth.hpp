@@ -17,13 +17,14 @@ namespace Depth
   class LocalDepth : public Depth::DepthFunction
   {
       public:
-	LocalDepth(DepthFunction& depthFnc);
-	LocalDepth(DepthFunction& depthFnc, DepthFunction& depthFncSecond);
+	LocalDepth(DepthFunction& depthFnc, double beta);
+	LocalDepth(DepthFunction& depthFnc, DepthFunction& depthFncSecond, double beta);
 	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
 	
       private:
 	const DepthFunction* depthFncFirst; 
 	const DepthFunction* depthFncSecond;
+	double beta;
   };
   
   namespace LocalDepthUtils

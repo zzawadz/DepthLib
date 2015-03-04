@@ -24,6 +24,9 @@ int main()
 	std::cout << "Local depth: " << Depth::LocalDepthUtils::local_depth(xmat, xmat, euclidDepth, euclidDepth, 0.5) << std::endl;
 	
 	
+	Depth::LocalDepth localDepth(euclidDepth, 0.5);
+	std::cout << "Local depth: " << localDepth.calculate_depth(xmat, xmat) << std::endl;
+	
 	//arma::mat big(1e4,2);
 	//big.randn();
 	//std::cout << "Local depth took " 

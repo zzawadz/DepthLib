@@ -9,6 +9,15 @@
 
 namespace Depth 
 {
+    LocalDepth::LocalDepth(DepthFunction& depthFnc, double beta) : depthFncFirst(&depthFnc), depthFncSecond(&depthFnc), beta(beta) {};
+    LocalDepth::LocalDepth(DepthFunction& depthFnc, DepthFunction& depthFncSecond, double beta) : depthFncFirst(&depthFnc), depthFncSecond(&depthFncSecond), beta(beta) {};
+    
+    arma::vec LocalDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
+    {
+      return LocalDepthUtils::local_depth(x, y, *this->depthFncFirst, *this->depthFncSecond, this->beta);
+    }
+    
+    
     namespace LocalDepthUtils 
     {
       arma::mat symmetrization(arma::rowvec x, const arma::mat& y)
