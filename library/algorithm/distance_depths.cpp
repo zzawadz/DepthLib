@@ -10,6 +10,14 @@
 namespace Depth
 { 
  //////////////////////////// LP depth ///////////////////////////////
+  
+  
+ LpDepth::LpDepth(double p, double a, double b) : p(p), a(a), b(b) {};
+ arma::vec LpDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
+ {
+    return LP::lp_depth(x, y, this->p, this->a, this->b);
+ }
+  
  namespace LP
  {
     arma::vec lp_depth(const arma::mat& x, const arma::mat& y, const double &p, const double& a, const double& b)
