@@ -23,7 +23,13 @@ namespace TukeyUtils
   arma::vec get_ALPHA(const arma::vec& X, const arma::vec& Y,const double& U,const double& V, const double& P, const double& P2,const double& EPS);
   double tukey_depth2d_exact(double U, double V,const arma::mat& m);  
 }
-  
+
+namespace StandrdDepthUtils
+{
+  arma::mat runifsphere(size_t n, size_t p);
+  arma::vec seq(const double& x, const double& y, const size_t& length);
+}
+
 }
 
 #endif /* STANDARD_DEPTHS_HPP_ */
