@@ -16,8 +16,7 @@ namespace Depth
  {
     return Projection::projection_depth(x, y, this->nproj);
  }
-
-  
+ 
  namespace Projection
  {
   arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj)
@@ -56,8 +55,44 @@ namespace Depth
   }
  }
   
+///////////////// Tukey's depths
+
+TukeyDepth::TukeyDepth(bool exact) : nproj(1000), exact(exact) {};
+TukeyDepth::TukeyDepth(size_t nproj) : nproj(nproj), exact(false) {};
+TukeyDepth::TukeyDepth(size_t nproj, bool exact) : nproj(nproj), exact(exact) {};
+  
+arma::vec TukeyDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
+{
+  if(x.n_cols == 1) return TukeyUtils::tukey_depth1d(x, y);
+  if(x.n_cols == 2 && this->exact) return TukeyUtils::tukey_depth2d_exact(x, y);
+  TukeyUtils::tukey_depth(x, y, this->nproj);
+}
+
+  
   namespace TukeyUtils 
   {
+    arma::vec tukey_depth(const arma::mat& x, const arma::mat& y, size_t nproj)
+    {  
+      size_t nx = x.n_rows;
+      size_t ny = y.n_rows;
+      size_t d  = y.n_cols;
+
+      arma::mat directions = StandardDepthUtils::runifsphere(nproj, d);
+      directions = directions.t();
+      
+      arma::mat xdir = x * directions;
+      arma::mat ydir = y * directions;
+      
+      arma::mat bigRes(xdir.n_rows, x.n_cols);
+      
+      for(size_t i = 0; i < nproj; i++)
+      {
+	bigRes.col(i) = tukey_depth1d(xdir.col(i), ydir.col(i));    
+      }
+      
+      return arma::max(bigRes, 1);
+    }
+    
     
     arma::vec tukey_depth1d(const arma::colvec& x, arma::colvec y)
     {
@@ -156,7 +191,7 @@ namespace Depth
       }
 
 
-      double tukey_depth2d_exact(double U, double V,const arma::mat& m)
+      double tukey_depth2d_exact_single_val(double U, double V,const arma::mat& m)
       {
 	//  Compute the halfspace depth of the point (u,v) for the pairs of points
 	//  in the n by 2 matrix m.
@@ -283,7 +318,19 @@ namespace Depth
 	}
 	
 	return get_HDEP(NT, N, NUMH);
-      }  
+      }
+      
+    arma::vec tukey_depth2d_exact(const arma::mat& x, const arma::mat& y)
+    {
+      size_t n = x.n_rows;
+      arma::vec depth(n);
+      for(size_t i = 0; i < n; i++)
+      {
+	depth[i] = tukey_depth2d_exact_single_val(x.at(i,0), x.at(i,1), y);
+      }
+      return depth;
+    }
+      
   }
   
   namespace StandardDepthUtils

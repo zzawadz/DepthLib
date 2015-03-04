@@ -30,15 +30,31 @@ namespace Depth
    arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj);
  }
 
-// Tukey's depth
+/////////////////// Tukey's depth
+
+class TukeyDepth : public Depth::DepthFunction
+  {
+     public:
+	TukeyDepth(bool exact);
+	TukeyDepth(size_t nproj);
+	TukeyDepth(size_t nproj, bool exact);
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
+	
+      private:
+	 size_t nproj;
+	 bool exact;
+	
+  };
+
 namespace TukeyUtils
 {
+  arma::vec tukey_depth(const arma::mat& x, const arma::mat& y, size_t nproj);
   arma::vec tukey_depth1d(const arma::colvec& x, arma::colvec y);
-  
   double get_depths1(double m,const double j);
   double get_HDEP(size_t NT, size_t N, double NUMH);
   arma::vec get_ALPHA(const arma::vec& X, const arma::vec& Y,const double& U,const double& V, const double& P, const double& P2,const double& EPS);
-  double tukey_depth2d_exact(double U, double V,const arma::mat& m);  
+  double tukey_depth2d_exact_single_val(double U, double V,const arma::mat& m);  
+  arma::vec tukey_depth2d_exact(const arma::mat& x, const arma::mat& y);
 }
 
 namespace StandardDepthUtils
