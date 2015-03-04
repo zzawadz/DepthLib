@@ -14,7 +14,17 @@
 namespace Depth
 {
   
-  
+  class ProjectionDepth : public Depth::DepthFunction
+  {
+     public:
+	ProjectionDepth();
+	ProjectionDepth(size_t nproj);
+	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
+	
+      private:
+	 size_t nproj;
+	
+  };
  namespace Projection
  {
    arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj);

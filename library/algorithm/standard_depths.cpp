@@ -9,7 +9,14 @@
 
 namespace Depth
 {
-  ///////////////////// Projection depth
+ ///////////////////// Projection depth
+ ProjectionDepth::ProjectionDepth() : nproj(1000) {};
+ ProjectionDepth::ProjectionDepth(size_t nproj) : nproj(nproj) {};
+ arma::vec ProjectionDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
+ {
+    return Projection::projection_depth(x, y, this->nproj);
+ }
+
   
  namespace Projection
  {
