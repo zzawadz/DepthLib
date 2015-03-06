@@ -17,6 +17,11 @@ int main()
 	
 	std::cout << Depth::TukeyUtils::tukey_depth1d(x,y) << std::endl;
 	
+	arma::mat xMat(10,2);
+	xMat.randn();
+	Depth::ProjectionDepth projDepth;
+	projDepth.calculate_depth(xMat, xMat);
+	
 	//arma::colvec big(10000000);
 	//big.randn();
 	
