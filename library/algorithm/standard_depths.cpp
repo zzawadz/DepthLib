@@ -10,22 +10,27 @@
 namespace Depth
 {
  ///////////////////// Projection depth
- ProjectionDepth::ProjectionDepth() : nproj(1000) {};
- ProjectionDepth::ProjectionDepth(size_t nproj) : nproj(nproj) {};
+ ProjectionDepth::ProjectionDepth() : nproj(1000), runifsphere(StandardDepthUtils::runifsphere) {};
+ ProjectionDepth::ProjectionDepth(size_t nproj) : nproj(nproj), runifsphere(StandardDepthUtils::runifsphere) {};
+ ProjectionDepth::ProjectionDepth(runifs runifsphere) : nproj(1000), runifsphere(runifsphere) {};
+ ProjectionDepth::ProjectionDepth(size_t nproj, runifs runifsphere) : nproj(nproj), runifsphere(runifsphere) {};
+ 
+ 
+ 
  arma::vec ProjectionDepth::calculate_depth(const arma::mat& x, const arma::mat& y) const
  {
-    return Projection::projection_depth(x, y, this->nproj);
+    return Projection::projection_depth(x, y, this->nproj, this->runifsphere);
  }
  
  namespace Projection
  {
-  arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj)
+  arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj, runifs runifsphere)
   {  
     size_t nx = x.n_rows;
     size_t ny = y.n_rows;
     size_t d  = y.n_cols;
 
-    arma::mat directions = StandardDepthUtils::runifsphere(nproj, d);
+    arma::mat directions = runifsphere(nproj, d);
     directions = directions.t();
     
     arma::vec depth(nx);

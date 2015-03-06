@@ -10,24 +10,32 @@
 
 #include "depth.hpp"
 #include "DepthLib_include.hpp"
+#include <functional>
+
+
 
 namespace Depth
 {
+  typedef std::function<arma::mat(size_t, size_t)> runifs;
+  
   
   class ProjectionDepth : public Depth::DepthFunction
   {
      public:
 	ProjectionDepth();
 	ProjectionDepth(size_t nproj);
+	ProjectionDepth(runifs runifsphere);
+	ProjectionDepth(size_t nproj, runifs runifsphere);
 	virtual arma::vec calculate_depth(const arma::mat& x, const arma::mat& y) const;
 	
       private:
+	 runifs runifsphere;
 	 size_t nproj;
 	
   };
  namespace Projection
  {
-   arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj);
+   arma::vec projection_depth(const arma::mat& x, const arma::mat& y, size_t nproj, runifs runifsphere);
  }
 
 /////////////////// Tukey's depth
